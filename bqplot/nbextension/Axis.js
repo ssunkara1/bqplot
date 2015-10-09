@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-define(["nbextensions/widgets/widgets/js/widget", "./components/d3/d3", "./utils"], function(Widget, d3, bqutils) {
+define(["nbextensions/widgets/widgets/js/widget", "./components/d3/d3", "./utils", "./tickformatter"], function(Widget, d3, bqutils, tick_formatter) {
     "use strict";
 
      var units_array = ["em", "ex", "px"];
@@ -564,9 +564,6 @@ define(["nbextensions/widgets/widgets/js/widget", "./components/d3/d3", "./utils
             this.axis_scale.off();
             this.set_scale(value);
         },
-        _get_digits: function(number) {
-            return (number == 0) ? 1 : (Math.floor(Math.log10(Math.abs(number))) + 1);
-        },
         _replace_trailing_zeros: function(str) {
             //regex to replace the trailing
             //zeros after the decimal point.
@@ -617,9 +614,9 @@ define(["nbextensions/widgets/widgets/js/widget", "./components/d3/d3", "./utils
             var diff = Math.abs(ticks[1] - ticks[0]);
             var max = Math.max(Math.abs(ticks[0]), Math.abs(ticks[ticks.length - 1]));
 
-            var max_digits = this._get_digits(max);
+            var max_digits = tick_formatter._get_digits(max);
             // number of digits in the max
-            var diff_digits = this._get_digits(diff);
+            var diff_digits = tick_formatter._get_digits(diff);
             // number of digits in the min
 
             var precision = Math.abs(max_digits - diff_digits);
