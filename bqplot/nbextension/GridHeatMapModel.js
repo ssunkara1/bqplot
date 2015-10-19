@@ -46,7 +46,7 @@ define(["./components/d3/d3", "./MarkModel"], function(d3, MarkModelModule) {
                 return {
                     row_num : row_num,
                     column_num : col_num,
-                    color : that.colors[row_num][col_num],
+                    color : data,
                     _cell_num : row_num * num_rows + col_num,
                 }
             });
