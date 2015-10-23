@@ -197,6 +197,7 @@ define(["./components/d3/d3", "./Mark", "./utils"], function(d3, MarkViewModule,
             }
         },
         relayout: function() {
+            console.log("entering relayout");
             this.set_ranges();
             var x_scale = this.scales.x;
             var that = this;
@@ -208,6 +209,7 @@ define(["./components/d3/d3", "./Mark", "./utils"], function(d3, MarkViewModule,
                                                                         { return x_scale.scale(el.x) + x_scale.offset; })
                                                               : [];
             this.create_labels();
+            console.log("exiting relayout");
         },
         invert_range: function(start_pxl, end_pxl) {
             if(start_pxl === undefined || end_pxl === undefined) {
@@ -389,6 +391,7 @@ define(["./components/d3/d3", "./Mark", "./utils"], function(d3, MarkViewModule,
             return this.get_colors(index);
         },
         update_line_xy: function(animate) {
+            console.log("enter update line xy");
             var x_scale = this.scales.x, y_scale = this.scales.y;
             var animation_duration = animate ? this.parent.model.get("animation_duration") : 0;
 
@@ -407,11 +410,14 @@ define(["./components/d3/d3", "./Mark", "./utils"], function(d3, MarkViewModule,
               .transition().duration(animation_duration)
               .attr("d", function(d) {
                   return that.line(d.values) + that.path_closure();
-              });
+              })
+              .each("start", function() { console.log("start transition"); })
+              .each("end", function() { console.log("end transition"); })
 
             this.x_pixels = (this.model.mark_data.length > 0) ? this.model.mark_data[0].values.map(function(el)
                                                                         { return x_scale.scale(el.x) + x_scale.offset; })
                                                               : [];
+            console.log("exit update line xy");
         },
         draw: function(animate) {
             this.set_ranges();
