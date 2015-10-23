@@ -486,6 +486,8 @@ define(["nbextensions/widgets/widgets/js/widget", "./components/d3/d3", "./utils
             // Has to redraw from a clean slate
             this.update_axis_domain();
             this.update_offset_scale_domain();
+            this.g_axisline.attr("transform", this.get_axis_transform());
+            this.g_axisline.call(this.axis);
 
             //animate axis and grid lines on domain changes
             var animate = true;
