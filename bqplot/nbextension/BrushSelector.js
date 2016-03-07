@@ -160,7 +160,7 @@ define(["./components/d3/d3", "./Selector", "./utils", "underscore"], function(d
             //programmatically setting the brush does not redraw it. It is
             //being redrawn below
             this.brushsel = this.el.call(this.brush);
-            this.el.call(this.brush.event);
+            // this.el.call(this.brush.event);
         },
     });
 
@@ -293,7 +293,7 @@ define(["./components/d3/d3", "./Selector", "./utils", "underscore"], function(d
             //programmatically setting the brush does not redraw it. It is
             //being redrawn below
             this.brushsel = this.el.call(this.brush);
-            this.el.call(this.brush.event);
+            // this.el.call(this.brush.event);
         },
         remove: function() {
             this.brush.clear();
