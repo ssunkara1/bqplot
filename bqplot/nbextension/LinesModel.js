@@ -79,10 +79,18 @@ define(["./components/d3/d3", "./MarkModel", "underscore"], function(d3, MarkMod
             this.trigger("data_updated");
         },
         update_labels: function() {
+             // update the names in mark_data
+             var labels = this.get_labels();
+             this.mark_data.forEach(function(element, i) {
+                 element.name = labels[i];
+             });
+             this.trigger("labels_updated");
+        },
+        get_labels: function() {
             // Function to set the labels appropriately.
             // Setting the labels to the value sent and filling in the
             // remaining values.
-            var curve_labels = this.get("labels");
+            var curve_labels = this.update_labels();
             var data_length = (this.x_data.length == 1) ?
                 (this.y_data.length) : Math.min(this.x_data.length, this.y_data.length);
             if(curve_labels.length > data_length) {
