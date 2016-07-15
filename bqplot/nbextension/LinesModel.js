@@ -24,6 +24,7 @@ define(["./components/d3/d3", "./MarkModel", "underscore"], function(d3, MarkMod
             // on_some_change depends on the GLOBAL backbone on("change") handler which
             // is called AFTER the specific handlers on("change:foobar") and we make that
             // assumption.
+            this.on("change:labels", this.update_labels, this);
             this.on_some_change(["preserve_domain"], this.update_domains, this);
         },
         update_data: function() {
