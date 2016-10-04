@@ -29,7 +29,6 @@ var AxisModel = basemodel.BaseModel.extend({
             _view_module: "bqplot",
             _model_module_version: semver_range,
             _view_module_version: semver_range,
-
             orientation: "horizontal",
             side: null,
             label: "",
@@ -44,7 +43,8 @@ var AxisModel = basemodel.BaseModel.extend({
             grid_color: null,
             color: null,
             label_offset: null,
-            visible: true
+            visible: true,
+            rotate_angle: 0
         });
     },
 
