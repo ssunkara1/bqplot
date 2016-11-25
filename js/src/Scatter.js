@@ -230,7 +230,8 @@ var Scatter = scatterbase.ScatterBase.extend({
         this.apply_styles();
     },
 
-    draw_legend_elements: function(elements_added, rect_dim) {
+    draw_legend_elements: function(elements_added, rect_dim, inter_x_disp,
+                                   inter_y_disp) {
         var colors = this.model.get("colors"),
             len = colors.length,
             stroke = this.model.get("stroke");

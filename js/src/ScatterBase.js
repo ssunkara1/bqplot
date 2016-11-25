@@ -483,7 +483,7 @@ var ScatterBase = mark.Mark.extend({
                 this.event_dispatcher("legend_clicked");
             }, this));
 
-        this.draw_legend_elements(el_added, rect_dim)
+        this.draw_legend_elements(el_added, rect_dim, inter_x_disp, inter_y_disp);
 
         this.legend_el.append("text")
           .attr("class","legendtext")
