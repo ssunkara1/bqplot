@@ -205,10 +205,11 @@ var Scatter = scatterbase.ScatterBase.extend({
     },
 
     color_scale_updated: function(animate) {
+        console.log("inside color scale updated");
         var that = this,
             fill = this.model.get("fill"),
             stroke = this.model.get("stroke");
-            var animation_duration = animate === true ? this.parent.model.get("animation_duration") : 0;
+        var animation_duration = animate === true ? this.parent.model.get("animation_duration") : 0;
 
         this.d3el.selectAll(".object_grp")
           .select("path")
@@ -225,17 +226,26 @@ var Scatter = scatterbase.ScatterBase.extend({
 
     draw_elements: function(animate, elements_added) {
         var that = this;
+        console.log("Inside draw elements");
 
         var animation_duration = animate === true ? this.parent.model.get("animation_duration") : 0;
-        var elements = this.d3el.selectAll(".object_grp")
 
         elements_added.append("path").attr("class", "dot element");
         elements_added.append("text").attr("class", "dot_text");
+
+        var elements = this.d3el.selectAll(".object_grp")
+        console.log("Number of elements:" + elements[0].length);
+
         elements.select("path").transition()
             .duration(animation_duration)
-            .attr("d", this.dot
-                .size(function(d) { return that.get_element_size(d); })
-                .skew(function(d) { return that.get_element_skew(d); }));
+            .attr("d", this.dot);
+                //.size(function(d) { return that.get_element_size(d); })
+                //.skew(function(d) { return that.get_element_skew(d); }));
+        // if(animation_duration === 0) {
+        //     d3.timer.flush();
+        // }
+        console.log(elements.select("path")[0][0]);
+        console.log(this.dot(elements.select("path").data()[0], 0));
 
         this.update_names(animate);
         this.apply_styles();

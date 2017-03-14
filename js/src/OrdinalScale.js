@@ -22,7 +22,7 @@ var OrdinalScale = scale.Scale.extend({
     render: function() {
         this.scale = d3.scale.ordinal();
         //forcefully setting the domain
-        this.model.domain_changed();
+        // this.model.domain_changed();
         this.scale.domain(this.model.domain);
         this.offset = 0;
         this.create_event_listeners();
@@ -56,7 +56,7 @@ var OrdinalScale = scale.Scale.extend({
         // value passed. If the pixel is outside the range of the scale,
         var that = this;
         var domain = this.scale.domain();
-        var pixel_vals = domain.map(function(d) { 
+        var pixel_vals = domain.map(function(d) {
             return that.scale(d) + that.scale.rangeBand() / 2;
         });
         var abs_diff = pixel_vals.map(function(d) {
@@ -74,7 +74,7 @@ var OrdinalScale = scale.Scale.extend({
             return that.scale(d) + that.scale.rangeBand() / 2;
         });
         var indices = _.range(pixel_vals.length);
-        var filtered_ind = indices.filter(function(ind) { 
+        var filtered_ind = indices.filter(function(ind) {
             return (pixel_vals[ind] >= pixels[0] &&
                     pixel_vals[ind] <= pixels[1]);
         });

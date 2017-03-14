@@ -24,6 +24,7 @@ var min_size = 10;
 var ScatterBase = mark.Mark.extend({
 
     render: function() {
+        console.log("Inside create scatter");
         var base_creation_promise = ScatterBase.__super__.render.apply(this);
 
         var that = this;
