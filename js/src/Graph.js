@@ -306,7 +306,6 @@ var Graph = mark.Mark.extend({
     hover_handler: function(args) {
         var data = args.data;
         var index = args.index;
-
         this.model.set("hovered_point",
                        index, {updated_view: this});
         this.touch();

@@ -26,8 +26,7 @@ var Mark = widgets.WidgetView.extend({
     },
 
     render: function() {
-        this.x_padding = 0;
-        this.y_padding = 0;
+        this.x_padding = 0se        this.y_padding = 0;
         this.parent = this.options.parent;
         this.uuid = widgets.uuid();
         var scale_creation_promise = this.set_scale_views();

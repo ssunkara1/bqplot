@@ -1385,3 +1385,31 @@ class Graph(Mark):
 
     _model_name = Unicode('GraphModel').tag(sync=True)
     _view_name = Unicode('Graph').tag(sync=True)
+
+
+    def __init__(self, **kwargs):
+        self._drag_start_handlers = CallbackDispatcher()
+        self._drag_handlers = CallbackDispatcher()
+        self._drag_end_handlers = CallbackDispatcher()
+        super(Graph, self).__init__(**kwargs)
+
+    def on_drag_start(self, callback, remove=False):
+        self._drag_start_handlers.register_callback(callback, remove=remove)
+
+    def on_drag(self, callback, remove=False):
+        self._drag_handlers.register_callback(callback, remove=remove)
+
+    def on_drag_end(self, callback, remove=False):
+        self._drag_end_handlers.register_callback(callback, remove=remove)
+
+    def _handle_custom_msgs(self, _, content, buffers=None):
+        event = content.get('event', '')
+
+        if event == 'drag_start':
+            self._drag_start_handlers(self, content)
+        elif event == 'drag':
+            self._drag_handlers(self, content)
+        elif event == 'drag_end':
+            self._drag_end_handlers(self, content)
+
+        super(Graph, self)._handle_custom_msgs(self, content)
